@@ -17,7 +17,7 @@ namespace WebApi2.Controllers
             new Product
             {
             Name ="zahra kabdoli1",
-            Id =1,
+            Id =2,
             Description="pretty girls",
             Price=11
             },
@@ -32,28 +32,28 @@ namespace WebApi2.Controllers
             new Product
             {
             Name ="zahra kabdoli3",
-            Id =1,
+            Id =3,
             Description="pretty girls",
             Price=11
             },
            new Product
             {
             Name ="zahra kabdoli1",
-            Id =1,
+            Id =4,
             Description="pretty girls",
             Price=11
             },
             new Product
             {
             Name ="zahra kabdoli1",
-            Id =1,
+            Id =5,
             Description="pretty girls",
             Price=11
             },
             new Product
             {
             Name ="zahra kabdoli1",
-            Id =1,
+            Id =6,
             Description="pretty girls",
             Price=11
             }
@@ -75,13 +75,13 @@ namespace WebApi2.Controllers
         {
             products.Add(product);
         }
-        [HttpGet("{id}")]
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
             var product = products.Where(p => p.Id == id);
             products = products.Except(product).ToList();
         }
-        [HttpGet("{id}")]
+        [HttpPut("{id}")]
         public void Put(int id, [FromBody] Product product)
         {
             var exitingProdct = products.Where(p => p.Id == id);

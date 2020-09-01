@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi2.Models;
+
 namespace WebApi2.Controllers
 {
     [Route("api/[controller]")]
@@ -70,7 +71,7 @@ namespace WebApi2.Controllers
             return product;
         }
         [HttpPost]
-        public void Post([FormBody] Product product)
+        public void Post([FromBody] Product product)
         {
             products.Add(product);
         }
@@ -81,7 +82,7 @@ namespace WebApi2.Controllers
             products = products.Except(product).ToList();
         }
         [HttpGet("{id}")]
-        public void Put(int id, [FormBody] Product product)
+        public void Put(int id, [FromBody] Product product)
         {
             var exitingProdct = products.Where(p => p.Id == id);
             products = products.Except(exitingProdct).ToList();

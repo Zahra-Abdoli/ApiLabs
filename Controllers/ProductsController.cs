@@ -64,7 +64,28 @@ namespace WebApi2.Controllers
             return products;
         }
         [HttpGet("{id}")]
-        //lab 3 working
-        //test
+        public Product Get(int id)
+        {
+            var product = products.Find(p => p.Id == id);
+            return product;
+        }
+        [HttpPost]
+        public void Post([FormBody] Product product)
+        {
+            products.Add(product);
+        }
+        [HttpGet("{id}")]
+        public void Delete(int id)
+        {
+            var product = products.Where(p => p.Id == id);
+            products = products.Except(product).ToList();
+        }
+        [HttpGet("{id}")]
+        public void Put(int id, [FormBody] Product product)
+        {
+            var exitingProdct = products.Where(p => p.Id == id);
+            products = products.Except(exitingProdct).ToList();
+            products.Add(product);
+        }
     }
 }

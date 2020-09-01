@@ -98,11 +98,13 @@ namespace WebApi2.Controllers
             return products;
         }
         [HttpPut("{id}")]
-        public ActionResult<Product> Put(int id, [FromBody] Product product)
+        public ActionResult<IEnumerable<Product>> Put(int id, [FromBody] Product product)
         {
+            if (id != product.Id) { return BadRequest(); }
             var exitingProdct = products.Where(p => p.Id == id);
             products = products.Except(exitingProdct).ToList();
             products.Add(product);
+            return products;
         }
     }
 }

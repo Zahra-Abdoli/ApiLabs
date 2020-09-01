@@ -94,7 +94,7 @@ namespace WebApi2.Controllers
             {
                 return NotFound();
             }
-             products = products.Except(product).ToList();
+            products = products.Except((IEnumerable<Product>)product).ToList();
             return products;
         }
         [HttpPut("{id}")]
